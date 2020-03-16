@@ -11,7 +11,7 @@ export default class ToolbarProperty extends Vue {
 
   get propsData() {
     return JSON.stringify({
-      // type: this.proptype,
+      type: this.proptype,
       name: this.name,
       value: this.value,
     });

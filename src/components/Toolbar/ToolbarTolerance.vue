@@ -8,9 +8,9 @@ div
       @dragstart="dragStart"
       @dragend="dragEnd"
     ) Tolerance
-    b-form-input(
+    b-form-select(
       id="toolbar_input_tolerance"
-      type="number"
+      :options="['fine', 'medium', 'rough']"
       v-model="value"
     )
 </template>

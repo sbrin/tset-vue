@@ -22,20 +22,29 @@ div(
       :key="prop.name"
     )
       label.tooblar-prop(
-        for="toolbar_input_drilling"
-      ) {{ prop.name }}
+        :for="`toolbar_input_${prop.name}`"
+      ) {{ prop.type }}
       b-form-row
-        b-col
+        b-col(
+          v-if="prop.name !== 'tolerance'"
+        )
           b-form-input(
-            id="toolbar_input_drilling"
+            id="`toolbar_input_${prop.name}`"
             type="number"
             v-model="prop.value"
           )
-        b-col(v-if="prop.unit")
-          b-form-input(
-            id="toolbar_input_drilling"
-            type="number"
+        b-col(
+          v-else-if="prop.name === 'tolerance'"
+        )
+          b-form-select(
+            id="`toolbar_input_${prop.name}`"
+            :options="['fine', 'medium', 'rough']"
             v-model="prop.value"
+          )
+        b-col(v-if="prop.unit")
+          b-form-select(
+            :options="['nm', 'μm', 'mm']"
+            v-model="prop.unit"
           )
         b-col(
           @click="properties = properties.filter(item => item.name !== prop.name)"
